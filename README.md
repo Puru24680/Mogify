@@ -95,7 +95,7 @@ mogify/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/mogify.git
+git clone https://github.com/Puru24680/mogify.git
 ```
 
 ### Install frontend dependencies
