@@ -1,49 +1,40 @@
-import { Brain, Camera, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
-export default function Features() {
+import FeatureCard from "./FeatureCard";
+import { featureCards } from "../utils/content";
+import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "../utils/motion";
+
+function Features() {
   return (
-    <section className="bg-zinc-950 text-white py-24 px-8">
-      <h2 className="text-4xl font-bold text-center">
-        Why Choose Mogify?
-      </h2>
-
-      <p className="text-gray-400 text-center mt-4">
-        Everything you need to maximize your appearance.
-      </p>
-
-      <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-6xl mx-auto">
-
-        <div className="bg-zinc-900 rounded-2xl p-8 transition duration-300 hover:-translate-y-2 hover:bg-zinc-800">
-          <Brain size={40} />
-          <h3 className="text-2xl font-semibold mt-6">
-            AI Face Analysis
-          </h3>
-          <p className="text-gray-400 mt-3">
-            Get detailed facial analysis powered by AI.
+    <section id="features" className="py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="mx-auto max-w-2xl text-center"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          transition={{ duration: 0.55 }}
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-indigo-600">Features</p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl text-balance">
+            Everything a premium appearance coach should provide.
+          </h2>
+          <p className="mt-5 text-base leading-7 text-slate-600 sm:text-lg">
+            Mogify combines polished UX, structured scoring, and actionable recommendations into one professional workflow.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-zinc-900 rounded-2xl p-8 transition duration-300 hover:-translate-y-2 hover:bg-zinc-800">
-          <Camera size={40} />
-          <h3 className="text-2xl font-semibold mt-6">
-            Upload Photos
-          </h3>
-          <p className="text-gray-400 mt-3">
-            Upload multiple angles for better accuracy.
-          </p>
-        </div>
-
-        <div className="bg-zinc-900 rounded-2xl p-8 transition duration-300 hover:-translate-y-2 hover:bg-zinc-800">
-          <Sparkles size={40} />
-          <h3 className="text-2xl font-semibold mt-6">
-            Personalized Tips
-          </h3>
-          <p className="text-gray-400 mt-3">
-            Receive hairstyle, skincare and grooming recommendations.
-          </p>
-        </div>
-
+        <motion.div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce}>
+          {featureCards.map((item) => (
+            <motion.div key={item.title} variants={staggerItem}>
+              <FeatureCard icon={item.icon} title={item.title} description={item.description} />
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
 }
+
+export default Features;
